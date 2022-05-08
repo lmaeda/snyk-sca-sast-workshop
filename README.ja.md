@@ -1,28 +1,30 @@
 # Snyk Code and Snyk Open Source Workshop
 
-Snyk Code and Snyk Open Source together provide easy-to-use, fast and accurate SAST and SCA testing, enabling developers and security teams to easily find and fix both security issues in their own proprietary code as well as known vulnerabilities in their open source dependencies, reducing risk and improving the pace of development
+Snyk Code と Snyk Open Source の組み合わせは、使いやすく迅速で、精度の高い SAST と SCA のスキャン機能を提供します。自社で開発したカスタムコード内のセキュリティ問題と、オープンソースパッケージ内の既知の脆弱性、これら両方の検出と修正を、開発とセキュリティの両チームにより簡単に実施できます。結果として、セキュリティリスクの対策と開発ペースの向上を両立させることができます。
 
 ## Prerequisites
 
-* public GitHub account - http://github.com
+* GitHub アカウント (パブリックであること) - http://github.com
 * git CLI - https://git-scm.com/downloads
 * snyk CLI - https://support.snyk.io/hc/en-us/articles/360003812538-Install-the-Snyk-CLI
-* Registered account on Snyk App - http://app.snyk.io
+* Snyk アカウント - http://app.snyk.io
 
 ## What we will do in this hands-on workshop?
 
-In this hands-on workshop we will achieve the following:
+このハンズオンワークショップでは以下のステップをカバーします。
+
+準備
 
 * [Step 1 - Fork the highly vulnerable Juice-Shop Application](#step-1---fork-the-highly-vulnerable-juice-shop-application)
 * [Step 2 - Configure GitHub Integration](#step-2---configure-github-integration)
 
-Snyk Code steps
+Snyk Code 関連ステップ
 
 * [Step 3 - Enable Snyk Code within Snyk App](#step-3---enable-snyk-code-within-snyk-app)
 * [Step 4 - Add project to find Snyk Code Vulnerabilities](#step-4---add-project-to-find-snyk-code-vulnerabilities)
 * [Step 5 - Run a Snyk Code CLI Test](#step-5---run-a-snyk-code-cli-test)
 
-Snyk Open Source steps
+Snyk Open Source 関連ステップ
 
 * [Step 6 - Find vulnerabilities](#step-6---find-vulnerabilities)
 * [Step 7 - Fix using a Pull Request](#step-7---fix-using-a-pull-request)
@@ -30,31 +32,31 @@ Snyk Open Source steps
 
 # Workshop Steps
 
-_Note: It is assumed your using a mac for these steps, but it should also work on Windows or linux with some modifications to the scripts potentially_
+注: 以下のステップでは主に Mac の利用を想定していますが、Windows または Linux 上でもスクリプトを一部変更することで対応できます。
 
-## Step 1 - Fork the highly vulnerable Juice-Shop Application
+## Step 1 - 数多くの脆弱性を含む Juice-Shop アプリケーションのフォーク
 
-_NOTE: You may have already forked the Juice-Shop application in that case go ahead and skip this step_
+注: Juice-Shop アプリケーションをすでにフォーク済みの場合、このステップは省略できます。次のステップへ進んでください。
 
-Navigate to the following GitHub repo - https://github.com/JennySnyk/juice-shop
+次の GitHub リポジトリにアクセスしてください - https://github.com/JennySnyk/juice-shop
 
-_NOTE: this repo comes from the project Juice Shop from OWASP_
+注: このリポジトリは OWASP の Juice Shop アプリケーションをフォークして一部変更したものです。
 
-* Click on the "**Fork**" button
-* Ensure you are forking this repo to your public GitHub account
-* Click done
+* "**Fork**" ボタンを選択します
+* フォーク先がパブリックな GitHub アカウントであることを確かめます
+* "**Create fork**" ボタンを選択します
 
 ![alt tag](https://i.ibb.co/PYCX43Q/Juice-Shop-Github.png)
 
-## Step 2 - Configure GitHub Integration
+## Step 2 - GitHub インテグレーションの設定
 
-_NOTE: You may have already setup GitHub integration in that case go ahead and skip this step_
+注: GitHub インテグレーションを済みの場合、このステップは省略できます。次のステップへ進んでください。
 
-First we need to connect Snyk to GitHub so we can import our Repository. Do so by following these steps below:
+Snyk を GitHub に接続してリポジトリをインポートできるようにします。以下のステップを実行してください。
 
-* Login to http://app.snyk.io Sign up if you haven't already.
-* Navigating to Integrations -> Source Control -> GitHub
-* Fill in your Account Credentials to Connect your GitHub Account.
+* http://app.snyk.io へログインする (サインアップをしていない場合はここでサインアップ)
+* Integrations タブ -> Source Control -> GitHub を選択する
+* クレデンシャルを設定して GitHub アカウントへ接続する
 
 ![alt tag](https://i.ibb.co/bPqqybM/snyk-starter-open-source-1.png)
 
