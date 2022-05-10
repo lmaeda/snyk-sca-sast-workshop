@@ -1,138 +1,143 @@
-# Snyk Code and Snyk Open Source Workshop
+# Snyk Code & Snyk Open Source ワークショップ
 
-Snyk Code and Snyk Open Source together provide easy-to-use, fast and accurate SAST and SCA testing, enabling developers and security teams to easily find and fix both security issues in their own proprietary code as well as known vulnerabilities in their open source dependencies, reducing risk and improving the pace of development
+Snyk Code と Snyk Open Source の組み合わせは、使いやすく迅速で、精度の高い SAST と SCA のスキャン機能を提供します。自社で開発したカスタムコード内のセキュリティ問題と、オープンソースパッケージ内の既知の脆弱性、これら両方の検出と修正を、開発とセキュリティの両チームが簡単に実施できます。Snyk を利用することで、セキュリティリスクの対策と開発ペースの向上の両立が実現します。
 
-## Prerequisites
+## 前提条件
 
-* public GitHub account - http://github.com
+* GitHub アカウント (パブリックであること) - http://github.com
 * git CLI - https://git-scm.com/downloads
-* snyk CLI - https://support.snyk.io/hc/en-us/articles/360003812538-Install-the-Snyk-CLI
-* Registered account on Snyk App - http://app.snyk.io
+* snyk CLI - https://docs.snyk.io/snyk-cli/install-the-snyk-cli
+* Snyk アカウント - http://app.snyk.io
 
-## What we will do in this hands-on workshop?
+## このハンズオンワークショップの概要
 
-In this hands-on workshop we will achieve the following:
+このハンズオンワークショップでは以下のステップをカバーします。
 
-* [Step 1 - Fork the highly vulnerable Juice-Shop Application](#step-1---fork-the-highly-vulnerable-juice-shop-application)
-* [Step 2 - Configure GitHub Integration](#step-2---configure-github-integration)
+準備
 
-Snyk Code steps
+* [Step 1 - 数多くの脆弱性を含む Juice-Shop アプリケーションのフォーク](#step-1---%E6%95%B0%E5%A4%9A%E3%81%8F%E3%81%AE%E8%84%86%E5%BC%B1%E6%80%A7%E3%82%92%E5%90%AB%E3%82%80-juice-shop-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF)
+* [Step 2 - GitHub インテグレーションの設定](#step-2---github-%E3%82%A4%E3%83%B3%E3%83%86%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E8%A8%AD%E5%AE%9A)
 
-* [Step 3 - Enable Snyk Code within Snyk App](#step-3---enable-snyk-code-within-snyk-app)
-* [Step 4 - Add project to find Snyk Code Vulnerabilities](#step-4---add-project-to-find-snyk-code-vulnerabilities)
-* [Step 5 - Run a Snyk Code CLI Test](#step-5---run-a-snyk-code-cli-test)
+Snyk Code 関連ステップ
 
-Snyk Open Source steps
+* [Step 3 - Snyk UI で Snyk Code の有効化](#step-3---snyk-ui-%E3%81%A7-snyk-code-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96)
+* [Step 4 - プロジェクトの追加 (Snyk Code で脆弱性をスキャン)](#step-4---%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E8%BF%BD%E5%8A%A0-snyk-code-%E3%81%A7%E8%84%86%E5%BC%B1%E6%80%A7%E3%82%92%E3%82%B9%E3%82%AD%E3%83%A3%E3%83%B3)
+* [Step 5 - Snyk Code CLI テストの実行](#step-5---snyk-code-cli-%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E5%AE%9F%E8%A1%8C)
 
-* [Step 6 - Find vulnerabilities](#step-6---find-vulnerabilities)
-* [Step 7 - Fix using a Pull Request](#step-7---fix-using-a-pull-request)
-* [Step 8 - Run a Snyk CLI Test](#step-8---run-a-snyk-cli-test)
+Snyk Open Source 関連ステップ
+
+* [Step 6 - 脆弱性のスキャン](#step-6---%E8%84%86%E5%BC%B1%E6%80%A7%E3%81%AE%E3%82%B9%E3%82%AD%E3%83%A3%E3%83%B3)
+* [Step 7 - PR (プルリクエスト) を通じた修正](#step-7---pr-%E3%83%97%E3%83%AB%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88-%E3%82%92%E9%80%9A%E3%81%98%E3%81%9F%E4%BF%AE%E6%AD%A3)
+* [Step 8 - Snyk CLI テストの実行](#step-8---snyk-cli-%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E5%AE%9F%E8%A1%8C)
 
 # Workshop Steps
 
-_Note: It is assumed your using a mac for these steps, but it should also work on Windows or linux with some modifications to the scripts potentially_
+注: 以下のステップでは主に Mac の利用を想定していますが、Windows または Linux 上でもスクリプトを一部変更することで対応できます。
 
-## Step 1 - Fork the highly vulnerable Juice-Shop Application
+## Step 1 - 数多くの脆弱性を含む Juice-Shop アプリケーションのフォーク
 
-_NOTE: You may have already forked the Juice-Shop application in that case go ahead and skip this step_
+注: Juice-Shop アプリケーションをすでにフォーク済みの場合、このステップは省略できます。次のステップへ進んでください。
 
-Navigate to the following GitHub repo - https://github.com/JennySnyk/juice-shop
+次の GitHub リポジトリにアクセスしてください - https://github.com/JennySnyk/juice-shop
 
-_NOTE: this repo comes from the project Juice Shop from OWASP_
+注: このリポジトリは OWASP の Juice Shop アプリケーションをフォークして一部変更したものです。
 
-* Click on the "**Fork**" button
-* Ensure you are forking this repo to your public GitHub account
-* Click done
+* "**Fork**" ボタンを選択します
+* フォーク先がパブリックな GitHub アカウントであることを確かめます
+* "**Create fork**" ボタンを選択します
 
 ![alt tag](https://i.ibb.co/PYCX43Q/Juice-Shop-Github.png)
 
-## Step 2 - Configure GitHub Integration
+## Step 2 - GitHub インテグレーションの設定
 
-_NOTE: You may have already setup GitHub integration in that case go ahead and skip this step_
+注: GitHub インテグレーションを済みの場合、このステップは省略できます。次のステップへ進んでください。
 
-First we need to connect Snyk to GitHub so we can import our Repository. Do so by following these steps below:
+Snyk を GitHub に接続してリポジトリをインポートできるようにします。以下のステップを実行してください。
 
-* Login to http://app.snyk.io Sign up if you haven't already.
-* Navigating to Integrations -> Source Control -> GitHub
-* Fill in your Account Credentials to Connect your GitHub Account.
+* http://app.snyk.io へログインする (サインアップをしていない場合はここでサインアップ)
+* Integrations タブ -> Source Control -> GitHub を選択する
+* クレデンシャルを設定して GitHub アカウントへ接続する
 
 ![alt tag](https://i.ibb.co/bPqqybM/snyk-starter-open-source-1.png)
 
-# Snyk Code Steps
+# Snyk Code のステップ
 
-Snyk Code is developer-first, embedding SAST as part of the development process, enabling developers to build software securely during development, not trying to find and fix problems after the code is compiled. Snyk Code works in the IDEs and SCMs developers use to build and review software and provides fast, actionable, meaningful results to fix issues in real-time
+Snyk Code はデベロッパーファーストな SAST で開発プロセスに組み込んで利用できるのが特長です。コードを書いた後に問題の検出・修正を行うのではなく、コードを書くタイミングでセキュアなソフトウェア開発を実現します。Snyk は開発者の使う IDE や SCM と連携して動作します。リアルタイムでの問題修正を可能にするために、実用的なスキャン結果を素早く提供します。
 
-## Step 3 - Enable Snyk Code within Snyk App
 
-* Click on the "**Settings**" button on the top most navigation bar as shown below
+## Step 3 - Snyk UI で Snyk Code の有効化
+
+* ページ上部のナビゲーションバーの "**Settings**" (歯車アイコン) を選択します
 
 ![alt tag](https://i.ibb.co/3fS4VCd/snyk-code-1.png)
 
-* Click on "**Snyk Code**", then enable it and click "**Save Changes**" as shown below
+* 画面左の "**Snyk Code**" を選択し、`Disabled` (有効化されていない) と表示されている場合は、`Enabled` (有効化されている) に切り替えた後、"**Save Changes**" を選択します
 
 ![alt tag](https://i.ibb.co/bP2FpGx/snyk-code-2.png)
 
-## Step 4 - Add project to find Snyk Code Vulnerabilities
+## Step 4 - プロジェクトの追加 (Snyk Code で脆弱性をスキャン)
 
-Now that Snyk is connected to your GitHub Account, import the Forked Repo "**juice-shop**" into Snyk as a Project.
+Snyk が GitHub アカウントと連携したので、フォークされたリポジトリ "**juice-shop**" を Project (プロジェクト) として Snyk にインポートします。
 
-* Navigate to Projects
-* Click "**Add Project**" then select "**GitHub**"
-* Click on the Repo you forked "**juice-shop**"
-* Click "**Add Selected Repositories**"
+* ページ上部のナビゲーションバーより Projects を選択します
+* ページ右上の "**Add Project**" を、続いて "**GitHub**" を選択します
+* フォークしたリポジトリ "**juice-shop**" のチェックボックスを選択します
+* ページ右上の "**Add Selected Repositories**" ボタンを選択します
 
 ![alt tag](https://i.ibb.co/ngxDfvw/Import-Juice-Shop.png)
 
-* Once complete you should see a "**Code Analysis**" project as shown below
+* インポートが終了すると、"**Code analysis**" プロジェクトが表示されます
 
 ![alt tag](https://i.ibb.co/RpScxJ2/Snyk-Code-Results.png)
 
-* Click on "**Code Analysis**" to view our SAST scan results
+* "**Code analysis**" を選択して、SAST スキャンの結果を確認します
 
-For each Vulnerability, Snyk displays the following:
+検出された脆弱性それぞれについて、Snyk は以下の情報を提供します。
 
-1. Each Vulnerability grouped by severity
-2. Each Vulnerability links to the CWE category code
-3. Each Vulnerability shows the CWE category name
-4. Displays the line of code where the security issue exists
-5. Description for the issue and the code file name it exists in
-6. A link to a Snyk Learn module on how to fix these type of vulnerabilities if available
-7. The ability to ignore issues you wish to remove from the list
+* Severity (深刻度)
+* 脆弱性の種類
+* 該当する CWE (Common Weakness Enumeration: 共通脆弱性タイプ)
+* 脆弱性の存在するコードの行
+* 脆弱性の概要
+* 脆弱性の存在するファイル名
+* Snyk Learn モジュールへのリンク (提供されている場合)ー修正方法について学ぶことができます
+* 脆弱性を Ignore (無視) する機能ー結果から脆弱性を除外することができます
 
 ![alt tag](https://i.ibb.co/yk83tyP/Snyk-Code-vuln.png)
 
-* Click on the "**Full Details**" button as shown below
+* "**Full details**" ボタンを選択します
 
-Snyk products all provide a developer-friendly experience, so Snyk Code helps developers to quickly understand the problem, learn the background, and how to approach it. Snyk Code helps you understand the dangerous code flow step-by-step. For every issue, Code also provides a link to the lines in the relevant files, to view more details on the problem like the CWE, and how to approach it.
+Snyk 製品はすべて開発者フレンドリーなエクスペリエンスを提供します。だから Snyk Code で開発者は速やかに問題を把握し、背景を理解した上で、対応方法を学ぶことができます。具体的には、Snyk Code を使ってセキュアではないコードフローをステップ・バイ・ステップで理解できます。検出された脆弱性それぞれについて、ソースファイルのコード行と関連づけて問題を明示します。こうして CWE といった問題を理解しながら、詳しい対処法を学べるのです。
 
 ![alt tag](https://i.ibb.co/HnL22t7/Cross-site-scripting-Dataflow.png)
 
-* Click on "**Fix Analysis**" to see how you can fix the issue based on other open source project. On this page you get not just source code example fixes but also the following detailed information
 
-1. Details
-2. Types Of Attacks
-3. Affected Environments
-4. How to prevent
+* "**Fix analysis**" を選択します。オープンソースプロジェクトでの実際の修正例を通じて、脆弱性の修正法を確認できます。この画面では、コードの修正例とあわせて、以下の詳細が表示されます (項目は脆弱性の種類によって異なります)。
+
+1. Details (脆弱性についての詳細説明)
+1. Prevention (脆弱性の予防法)
+1. Types of attacks (派生するアタック種類)
+1. Affected environments (影響を受ける環境) 
 
 ![alt tag](https://i.ibb.co/M21xScH/Cross-site-scripting-Fix-Analysis.png)
 
-## Step 5 - Run a Snyk Code CLI Test
+## Step 5 - Snyk Code CLI テストの実行
 
-In addition to the Snyk App UI we also have, snyk - CLI a build-time tool to find & fix known vulnerabilities in open-source dependencies, IaC configuration files and SAST scans on the source code files itself (Snyk Code).
+これまで見てきた Snyk UI に加えて、Snyk は コマンドラインインターフェイス Snyk CLI も提供しています。オープンソースパッケージ、IaC 設定ファイル、ソースコード、それぞれに含まれる脆弱性を検出、修正することができます。 
 
-* Before we get started please make sure you have setup the Snyk CLI. There are various install options as per the links below. Using the prebuilt binaries means you don't have to install NPM to install the Snyk CLI.
+* この先に進む前に、Snyk CLI の導入が完了していることを確認します。以下の通り、複数のインストール方法を提供しています。ビルド済みバイナリを使えば、NPM のインストールは必要ありません。
 
-1. Install Page - https://support.snyk.io/hc/en-us/articles/360003812538-Install-the-Snyk-CLI
-2. Prebuilt Binaries - https://github.com/snyk/snyk/releases
+1. Install Page - https://docs.snyk.io/snyk-cli/install-the-snyk-cli
+1. Prebuilt Binaries - https://github.com/snyk/snyk/releases
 
-_Note: Please ensure you have the latest version of the Snyk CLI installed a version equal to or greater than the version below_
+注: 最新のバージョンをインストールしてください。このワークショップでは以下のバージョンか、それより新しいバージョンが必要です。
 
 ```bash
 $ snyk --version
 1.801.0
 ```
 
-* Authorize the Snyk CLI with your account as follows
+* 以下のコマンドをを実行して Snyk CLI を認証します
 
 ```bash
 $ snyk auth
@@ -140,14 +145,15 @@ $ snyk auth
 Now redirecting you to our auth page, go ahead and log in,
 and once the auth is complete, return to this prompt and you'll
 be ready to start using snyk.
+[訳: ブラウザ上に認証ページ (Authenticate for CLI) が表示されますので、ログインして認証してください。認証が完了したら (Authenticated) 、コマンドプロンプトに戻ります。Snyk CLI が利用可能になります。]
 
 If you can't wait use this url:
-https://snyk.io/login?token=ff75a099-4a9f-4b3d-b75c-bf9847672e9c&utm_medium=cli&utm_source=cli&utm_campaign=cli&os=darwin&docker=false
+https://snyk.io/login?token=<token>&utm_medium=cli&utm_source=cli&utm_campaign=cli&os=darwin&docker=false
 
 Your account has been authenticated. Snyk is now ready to be used.
 ```
 
-* Clone your forked repository as shown below. You can use your own GitHub forked repo here instead of the one shown below if you like
+* 以下のコマンドでリポジトリをローカルにクローンしてください。以下のコマンドの代わりに、ご自身の GitHub にフォークしたリポジトリを使うこともできます。
 
 ```shell
 $ git clone https://github.com/JennySnyk/juice-shop
@@ -160,13 +166,13 @@ Receiving objects: 100% (94967/94967), 157.66 MiB | 10.35 MiB/s, done.
 Resolving deltas: 100% (72676/72676), done.
 ```
 
-* Change to the "**juice-shop**" directory
+* カレントディレクトリを "**juice-shop**" に変更します。
 
 ```shell
 $ cd juice-shop
 ```
 
-* At this point let's go ahead and run our first "**snyk code test**" as shown below
+* "**snyk code test**" コマンドを実行します
 
 ```shell
 $ snyk code test
@@ -207,82 +213,78 @@ Project path:      /Users/pasapicella/snyk/SE/workshops/SCA-SAST-workshop/juice-
 
 ```
 
-### To Go Further with Snyk Code - Snyk Code workshop
+### さらに Snyk Code を試す - Snyk Code ワークショップ
 
-Finally, to go further, feel free to look at this workshop https://github.com/papicella/snyk-code-workshop where additional steps are available (Snyk Code CLI Test and Snyk Code Test using VS Code)
+さらに Snyk Code を試す場合は、このワークショップ https://github.com/papicella/snyk-code-workshop に取り組んでみてください。追加のステップがあります。(Snyk Code CLI Test、Snyk Code Test using VS Code)
 
-# Snyk Open Source Steps
+# Snyk Open Source のステップ
 
-Snyk Open Source is a Software Composition Analysis took which seamlessly and proactively finds, prioritizes and fixes vulnerabilities and license violations in open source dependencies
+Snyk Open Source は SCA ツール (SCA: Software Composition Analysis=ソフトウェア構成解析) です。オープンソースパッケージに由来する脆弱性とライセンスポリシー違反を検出、修正、管理することができます。
 
-## Step 6 - Find vulnerabilities
+## Step 6 - 脆弱性のスキャン
 
-* Since Juice-Shop project had been imported in the Step 3, you should see multiple "**package.json**" projects as shown below.
+* Juice-Shop プロジェクトは Step 3 でインポートされているので、Snyk UI にて複数の "**package.json**" が表示されているはずです。
 
 ![alt tag](https://i.ibb.co/d4Qb3TV/Snyk-OS-vuln.png)
 
-* Click on the second "**package.json**" to view our Open Source scan results
+* 2 つ目の "**package.json**" を選択して、オープンソースのスキャン結果を確認します
+Click on the second "**package.json**" to view our Open Source scan results
 
-First let's explore the Juice-Shop project risks by clicking on the "**package.json**" file which is the manifest file where the open source dependencies are declared.
+Juice-Shop プロジェクトのリスクを確認しましょう。オープンソースの依存パッケージを宣言しているマニフェストファイル "**package.json**" を選択してください。マニフェストファイルの内容を確認することができます。
 
 ![alt tag](https://i.ibb.co/ZhN6tXY/Package-json-view.png)
 
-Thenk go back on the Snyk WebUI and let's have a look at the vulnerabilities.
+続いて Snyk UI へ戻り、脆弱性を確認します。
 
-For each Vulnerability, Snyk displays the following ordered by our [Proprietary Priority Score](https://docs.snyk.io/features/fixing-and-prioritizing-issues/starting-to-fix-vulnerabilities/snyk-priority-score) :
-1. The module that introduced it and, in the case of transitive dependencies, its direct dependency,
-1. Details on the path and proposed Remediation, as well as the specific vulnerable functions
-1. Overview
-1. Exploit maturity
-1. Links to CWE, CVE and CVSS Score
-1. Plus more ...
+脆弱性はデフォルトでは [Priority Score](https://docs.snyk.io/features/fixing-and-prioritizing-issues/starting-to-fix-vulnerabilities/snyk-priority-score) 順でソートされます。それぞれの脆弱性に対して、以下の情報が提供されます。
+
+1. Introduced through: 脆弱性の混入元であるパッケージ (推移的依存パッケージからの混入の場合は、マニフェストファイルで宣言されたパッケージが表示されます)
+1. Detailed paths and remediations: 混入元の依存パッケージまでのパスと、修正方法
+1. Overview: 脆弱性についての概要
+1. Exploit maturity: エクスプロイトマチュリティ (PoC コードの有無など、悪用される可能性の程度)
+1. Links to CWE, CVE and CVSS Score: CWE と CVE へのリンク、CVSS スコア
+1. Plus more …: その他
 
 ![alt tag](https://i.ibb.co/xq2GWCs/Snyk-OS-vuln.png)
 
-## Step 7 - Fix using a Pull Request
+## Step 7 - PR (プルリクエスト) を通じた修正
 
-When using the GitHub integration, and if a fix is available, Snyk can automatically upgrade the vulnerable dependency to a non-vulnerable version through a Pull Request.
+GitHub インテグレーションを使用していて、かつ修正が存在する場合、Snyk は Pull Request (プルリクエスト、以下 PR) を通じて、脆弱性のある依存パッケージを修正済みバージョンへ自動アップグレードすることができます。
 
-* Click on "**Fix this vulnerability**" for "**Prototype Pollution**" issue as shown below
+* "**Prototype Pollution**" の脆弱性について、"**Fix this vulnerability**" ボタンを選択します
 
 ![alt tag](https://i.ibb.co/9NHPmn2/Snyk-OS-Fix-this-vuln.png)
 
-* On the next screen, you'll be able to confirm the issue to fix with this PR. Click "**Open a Fix PR**"
+* 次の画面で、PR で修正する脆弱性を確認することができます。画面下部の "**Open a Fix PR**" ボタンを選択します
 
 ![alt tag](https://i.ibb.co/y5PHhhT/Vulns-to-fix-pr-view.png)
 ![alt tag](https://i.ibb.co/p2Lx5Rd/Open-fix-pr-button.png)
 
-* Once it's ready, you'll be taken to the PR in GitHub, where you can review the changes in the file diff view:
+* 準備ができると GitHub 上で PR が表示されます。ここでは Files changed タブから diff (変更による差分) を確認することができます。
 
-Snyk integrates with your preferred Git repository to scan your manifest files for any new code and potential vulnerabilities whenever you submit a pull request (PR), protecting the security of your code before you ever merge it with the main branch
+Snyk はお好みの Git リポジトリと連携して、PR の作成時にマニフェストファイルをスキャン可能です。メインブランチにマージする前の段階で、コードをセキュアな状態に維持することができます。
 
 ![alt tag](https://i.ibb.co/ySc72zN/Fix-PR-Github.png)
-
-* We see that CI checks completed successfully, assuring us we didn't introduce a breaking change
-
 ![alt tag](https://i.ibb.co/BzrNHvg/Files-changed-Github.png)
 
-* Optionally now, go ahead and merge the PR!
-* Back in Snyk we can appreciate that our package.json file has 1 less Critical Severity Vulnerability if you did fix it
+* セキュリティチェックが行われ、この PR によって新たな脆弱性が発生しないことを確認できます。
 
-### Step 8 - Run a Snyk CLI Test
+* (任意) PR をマージします
+* PR をマージした場合、Snyk UI へ戻って脆弱性が修正されていることを確認することもできます
 
-In addition to the Snyk App UI we also have, snyk - CLI and build-time tool to find & fix known vulnerabilities in open-source dependencies. The CLI is what is used in DevOps pipelines to introduce Application Security Scans as part of that workflow to push applications into production.
+### Step 8 - Snyk CLI テストの実行
 
-* Before we get started please make sure you have setup the Snyk CLI. There are various install options as per the links below. Using the prebuilt binaries means you don't have to install NPM to install the Snyk CLI.
+これまで見てきた Snyk UI に加えて、Snyk は コマンドラインインターフェイス Snyk CLI も提供しています。これによりオープンソースパッケージに含まれる脆弱性を検出、修正することができます。 この CLI を DevOps パイプラインに組み込むことで、アプリケーションを本番にデプロイするワークフロー内でアプリケーションセキュリティのスキャンを実行することもできます。
 
-1. Install Page - https://support.snyk.io/hc/en-us/articles/360003812538-Install-the-Snyk-CLI
-1. Prebuilt Binaries - https://github.com/snyk/snyk/releases
-
-* In order to run a Snyk CLI test we must install the npm packages so if you have npm in your path you can install them as follows
+* Snyk CLI でのスキャン実行には npm パッケージのインストールが必要です。npm がインストール済みであれば、以下のコマンドで npm パッケージのインストールを行います。
 
 ```shell
 $ npm install
 ```
 
-_Note: If you don't have npm installed this you can skip this final step as a "snyk test" will not work without a **package-lock.json** file or the "**node_modules**" folder_
+注: npm がインストールされていない場合、このステップをスキップして構いません。**package-lock.json** ファイル、もしくは、"**node_modules**" フォルダがない状態では `snyk test` コマンドは実行できません。
 
-* Once npm is installed run a Snyk CLI test as follows
+* npm パッケージがインストールされたら、Snyk CLI を実行します
 
 ```shell
 ❯ snyk test --all-projects
@@ -334,19 +336,20 @@ Tested 2 projects, 2 contained vulnerable paths.
 
 ```
 
-### To Go Further with Snyk Open Source - Snyk Open Source workshop
+### さらに Snyk Open Source を試す - Snyk Open Source ワークショップ
 
-Finally, to go further, feel free to look at this workshop https://github.com/papicella/snyk-open-source-workshop where additional steps are guided (Testing using the Snyk CLI and the IDE Integration with VS Code)
+さらに Snyk Open Source を試す場合は、このワークショップ https://github.com/papicella/snyk-open-source-workshop に取り組んでみてください。追加のステップがあります。(IDE Integration with VS Code, etc.)
 
 
-
-Thanks for attending and completing this workshop
+以上でワークショップ完了です。お疲れさまでした！
+本日はご参加ありがとうございました。
 
 ![alt tag](https://i.ibb.co/7tnp1B6/snyk-logo.png)
 
 <hr />
-Jenny Granja [jennifer.granja at snyk.io] is a Solution Engineer at Snyk APJ 
+Jenny Granja [jennifer.granja at snyk.io] is a Solutions Engineer at Snyk APJ 
 <br/>
-Pas Apicella [pas at snyk.io] is a Principal Solution Engineer at Snyk APJ
-
+Pas Apicella [pas at snyk.io] is a Principal Solutions Engineer at Snyk APJ
+<br/>
+Toshi Aizawa [toshi.aizawa at snyk.io] is a Senior Solutions Engineer at Snyk APJ
 
