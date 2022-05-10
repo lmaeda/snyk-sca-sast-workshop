@@ -1,6 +1,6 @@
 # Snyk Code & Snyk Open Source ワークショップ
 
-Snyk Code と Snyk Open Source の組み合わせは、使いやすく迅速で、精度の高い SAST と SCA のスキャン機能を提供します。自社で開発したカスタムコード内のセキュリティ問題と、オープンソースパッケージ内の既知の脆弱性、これら両方の検出と修正を、開発とセキュリティの両チームが簡単に実施できます。セキュリティリスクの対策と開発ペースの向上を両立させることができます。
+Snyk Code と Snyk Open Source の組み合わせは、使いやすく迅速で、精度の高い SAST と SCA のスキャン機能を提供します。自社で開発したカスタムコード内のセキュリティ問題と、オープンソースパッケージ内の既知の脆弱性、これら両方の検出と修正を、開発とセキュリティの両チームが簡単に実施できます。Snyk を利用することで、セキュリティリスクの対策と開発ペースの向上の両立が実現します。
 
 ## 前提条件
 
@@ -15,20 +15,20 @@ Snyk Code と Snyk Open Source の組み合わせは、使いやすく迅速で�
 
 準備
 
-* [Step 1 - Fork the highly vulnerable Juice-Shop Application](#step-1---fork-the-highly-vulnerable-juice-shop-application)
-* [Step 2 - Configure GitHub Integration](#step-2---configure-github-integration)
+* [Step 1 - 数多くの脆弱性を含む Juice-Shop アプリケーションのフォーク](#step-1---%E6%95%B0%E5%A4%9A%E3%81%8F%E3%81%AE%E8%84%86%E5%BC%B1%E6%80%A7%E3%82%92%E5%90%AB%E3%82%80-juice-shop-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF)
+* [Step 2 - GitHub インテグレーションの設定](#step-2---github-%E3%82%A4%E3%83%B3%E3%83%86%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E8%A8%AD%E5%AE%9A)
 
 Snyk Code 関連ステップ
 
-* [Step 3 - Enable Snyk Code within Snyk App](#step-3---enable-snyk-code-within-snyk-app)
-* [Step 4 - Add project to find Snyk Code Vulnerabilities](#step-4---add-project-to-find-snyk-code-vulnerabilities)
-* [Step 5 - Run a Snyk Code CLI Test](#step-5---run-a-snyk-code-cli-test)
+* [Step 3 - Snyk UI で Snyk Code の有効化](#step-3---snyk-ui-%E3%81%A7-snyk-code-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96)
+* [Step 4 - プロジェクトの追加 (Snyk Code で脆弱性をスキャン)](#step-4---%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E8%BF%BD%E5%8A%A0-snyk-code-%E3%81%A7%E8%84%86%E5%BC%B1%E6%80%A7%E3%82%92%E3%82%B9%E3%82%AD%E3%83%A3%E3%83%B3)
+* [Step 5 - Snyk Code CLI テストの実行](#step-5---snyk-code-cli-%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E5%AE%9F%E8%A1%8C)
 
 Snyk Open Source 関連ステップ
 
-* [Step 6 - Find vulnerabilities](#step-6---find-vulnerabilities)
-* [Step 7 - Fix using a Pull Request](#step-7---fix-using-a-pull-request)
-* [Step 8 - Run a Snyk CLI Test](#step-8---run-a-snyk-cli-test)
+* [Step 6 - 脆弱性のスキャン](#step-6---%E8%84%86%E5%BC%B1%E6%80%A7%E3%81%AE%E3%82%B9%E3%82%AD%E3%83%A3%E3%83%B3)
+* [Step 7 - PR (プルリクエスト) を通じた修正](#step-7---pr-%E3%83%97%E3%83%AB%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88-%E3%82%92%E9%80%9A%E3%81%98%E3%81%9F%E4%BF%AE%E6%AD%A3)
+* [Step 8 - Snyk CLI テストの実行](#step-8---snyk-cli-%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E5%AE%9F%E8%A1%8C)
 
 # Workshop Steps
 
@@ -341,7 +341,8 @@ Tested 2 projects, 2 contained vulnerable paths.
 さらに Snyk Open Source を試す場合は、このワークショップ https://github.com/papicella/snyk-open-source-workshop に取り組んでみてください。追加のステップがあります。(IDE Integration with VS Code, etc.)
 
 
-ご参加ありがとうございます。ワークショップ完了です。お疲れさまでした！
+以上でワークショップ完了です。お疲れさまでした！
+本日はご参加ありがとうございました。
 
 ![alt tag](https://i.ibb.co/7tnp1B6/snyk-logo.png)
 
