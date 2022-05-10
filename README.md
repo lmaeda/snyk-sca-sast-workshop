@@ -132,7 +132,7 @@ Snyk 製品はすべて開発者フレンドリーなエクスペリエンスを
 
 注: 最新のバージョンをインストールしてください。このワークショップでは以下のバージョンか、それより新しいバージョンが必要です。
 
-```
+```bash
 snyk --version
 ```
 
@@ -142,6 +142,10 @@ $ snyk --version
 ```
 
 * 以下のコマンドをを実行して Snyk CLI を認証します
+
+```bash
+snyk auth
+```
 
 ```bash
 $ snyk auth
@@ -159,7 +163,11 @@ Your account has been authenticated. Snyk is now ready to be used.
 
 * 以下のコマンドでリポジトリをローカルにクローンしてください。以下のコマンドの代わりに、ご自身の GitHub にフォークしたリポジトリを使うこともできます。
 
-```shell
+```bash
+git clone https://github.com/JennySnyk/juice-shop
+```
+
+```bash
 $ git clone https://github.com/JennySnyk/juice-shop
 Cloning into 'juice-shop'...
 remote: Enumerating objects: 94967, done.
@@ -172,13 +180,17 @@ Resolving deltas: 100% (72676/72676), done.
 
 * カレントディレクトリを "**juice-shop**" に変更します。
 
-```shell
-$ cd juice-shop
+```bash
+cd juice-shop
 ```
 
 * "**snyk code test**" コマンドを実行します
 
-```shell
+```bash
+snyk code test
+```
+
+```bash
 $ snyk code test
 
 Testing /Users/pasapicella/snyk/SE/workshops/SCA-SAST-workshop/juice-shop ...
@@ -282,16 +294,20 @@ Snyk はお好みの Git リポジトリと連携して、PR の作成時にマ�
 
 * Snyk CLI でのスキャン実行には npm パッケージのインストールが必要です。npm がインストール済みであれば、以下のコマンドで npm パッケージのインストールを行います。
 
-```shell
-$ npm install
+```bash
+npm install
 ```
 
 注: npm がインストールされていない場合、このステップをスキップして構いません。**package-lock.json** ファイル、もしくは、"**node_modules**" フォルダがない状態では `snyk test` コマンドは実行できません。
 
 * npm パッケージがインストールされたら、Snyk CLI を実行します
 
-```shell
-❯ snyk test --all-projects
+```bash
+snyk test --all-projects
+```
+
+```bash
+$ snyk test --all-projects
 
 Testing /Users/pasapicella/snyk/SE/workshops/SCA-SAST-workshop/juice-shop...
 
