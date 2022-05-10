@@ -282,7 +282,7 @@ Snyk はお好みの Git リポジトリと連携して、PR の作成時にマ�
 $ npm install
 ```
 
-注: npm がインストールされていない場合、このステップをスキップして構いません。**package-lock.json** ファイル、もしくは、"**node_modules**" がない状態では `snyk test` コマンドは実行できません。
+注: npm がインストールされていない場合、このステップをスキップして構いません。**package-lock.json** ファイル、もしくは、"**node_modules**" フォルダがない状態では `snyk test` コマンドは実行できません。
 
 * npm パッケージがインストールされたら、Snyk CLI を実行します
 
