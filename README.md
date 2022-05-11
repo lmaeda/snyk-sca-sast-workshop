@@ -254,7 +254,7 @@ Juice-Shop プロジェクトのリスクを確認しましょう。オープン
 1. Introduced through: 脆弱性の混入元であるパッケージ (推移的依存パッケージからの混入の場合は、マニフェストファイルで宣言されたパッケージが表示されます)
 1. Detailed paths and remediations: 混入元の依存パッケージまでのパスと、修正方法
 1. Overview: 脆弱性についての概要
-1. Exploit maturity: エクスプロイトマチュリティ (PoC コードの有無など、悪用される可能性の程度)
+1. Exploit maturity: 攻撃可能性 (PoC=実証コードの有無など、攻撃される可能性の程度)
 1. Links to CWE, CVE and CVSS Score: CWE と CVE へのリンク、CVSS スコア
 1. その他
 
