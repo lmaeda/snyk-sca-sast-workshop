@@ -6,7 +6,7 @@ Snyk Code と Snyk Open Source の組み合わせは、使いやすく迅速で�
 
 * GitHub アカウント (パブリックであること) - http://github.com
 * git CLI - https://git-scm.com/downloads
-* snyk CLI - https://docs.snyk.io/snyk-cli/install-the-snyk-cli
+* snyk CLI - https://docs.snyk.io/snyk-cli/install-the-snyk-cli ([Snyk CLI のインストールとアップデート](https://qiita.com/ToshiAizawa/items/c090cbd525e45cc5ae51))
 * Snyk アカウント - http://app.snyk.io
 
 ## このハンズオンワークショップの概要
@@ -38,9 +38,7 @@ Snyk Open Source 関連ステップ
 
 注: Juice-Shop アプリケーションをすでにフォーク済みの場合、このステップは省略できます。次のステップへ進んでください。
 
-次の GitHub リポジトリにアクセスしてください - https://github.com/JennySnyk/juice-shop
-
-注: このリポジトリは OWASP の Juice Shop アプリケーションをフォークして一部変更したものです。
+次の GitHub リポジトリにアクセスしてください - https://github.com/juice-shop/juice-shop
 
 * "**Fork**" ボタンを選択します
 * フォーク先がパブリックな GitHub アカウントであることを確かめます
@@ -50,7 +48,7 @@ Snyk Open Source 関連ステップ
 
 ## Step 2 - GitHub インテグレーションの設定
 
-注: GitHub インテグレーションを済みの場合、このステップは省略できます。次のステップへ進んでください。
+注: GitHub インテグレーションを設定済みの場合、このステップは省略できます。次のステップへ進んでください。
 
 Snyk を GitHub に接続してリポジトリをインポートできるようにします。以下のステップを実行してください。
 
@@ -127,7 +125,7 @@ Snyk 製品はすべて開発者フレンドリーなエクスペリエンスを
 
 * この先に進む前に、Snyk CLI の導入が完了していることを確認します。以下の通り、複数のインストール方法を提供しています。ビルド済みバイナリを使えば、NPM のインストールは必要ありません。
 
-1. Install Page - https://docs.snyk.io/snyk-cli/install-the-snyk-cli
+1. Install Page - https://docs.snyk.io/snyk-cli/install-the-snyk-cli ([Snyk CLI のインストールとアップデート](https://qiita.com/ToshiAizawa/items/c090cbd525e45cc5ae51))
 1. Prebuilt Binaries - https://github.com/snyk/snyk/releases
 
 注: 最新のバージョンをインストールしてください。このワークショップでは以下のバージョンか、それより新しいバージョンが必要です。
@@ -164,11 +162,11 @@ Your account has been authenticated. Snyk is now ready to be used.
 * 以下のコマンドでリポジトリをローカルにクローンしてください。以下のコマンドの代わりに、ご自身の GitHub にフォークしたリポジトリを使うこともできます。
 
 ```bash
-git clone https://github.com/JennySnyk/juice-shop
+git clone https://github.com/juice-shop/juice-shop
 ```
 
 ```bash
-$ git clone https://github.com/JennySnyk/juice-shop
+$ git clone https://github.com/juice-shop/juice-shop
 Cloning into 'juice-shop'...
 remote: Enumerating objects: 94967, done.
 remote: Counting objects: 100% (17/17), done.
@@ -239,12 +237,11 @@ Snyk Open Source は SCA ツール (SCA: Software Composition Analysis=ソフト
 
 ## Step 6 - 脆弱性のスキャン
 
-* Juice-Shop プロジェクトは Step 3 でインポートされているので、Snyk UI にて複数の "**package.json**" が表示されているはずです。
+* Juice-Shop プロジェクトは Step 3 でインポートされているので、Snyk UI にて "**package.json**" が表示されているはずです。
 
 ![alt tag](https://i.ibb.co/d4Qb3TV/Snyk-OS-vuln.png)
 
-* 2 つ目の "**package.json**" を選択して、オープンソースのスキャン結果を確認します
-Click on the second "**package.json**" to view our Open Source scan results
+* "**package.json**" (複数ある場合は `frontend/` ではないもの) を選択して、オープンソースのスキャン結果を確認します
 
 Juice-Shop プロジェクトのリスクを確認しましょう。オープンソースの依存パッケージを宣言しているマニフェストファイル "**package.json**" を選択してください。マニフェストファイルの内容を確認することができます。
 
@@ -257,9 +254,9 @@ Juice-Shop プロジェクトのリスクを確認しましょう。オープン
 1. Introduced through: 脆弱性の混入元であるパッケージ (推移的依存パッケージからの混入の場合は、マニフェストファイルで宣言されたパッケージが表示されます)
 1. Detailed paths and remediations: 混入元の依存パッケージまでのパスと、修正方法
 1. Overview: 脆弱性についての概要
-1. Exploit maturity: エクスプロイトマチュリティ (PoC コードの有無など、悪用される可能性の程度)
+1. Exploit maturity: 攻撃可能性 (PoC=実証コードの有無など、攻撃される可能性の程度)
 1. Links to CWE, CVE and CVSS Score: CWE と CVE へのリンク、CVSS スコア
-1. Plus more …: その他
+1. その他
 
 ![alt tag](https://i.ibb.co/xq2GWCs/Snyk-OS-vuln.png)
 
@@ -283,8 +280,7 @@ Snyk はお好みの Git リポジトリと連携して、PR の作成時にマ�
 ![alt tag](https://i.ibb.co/ySc72zN/Fix-PR-Github.png)
 ![alt tag](https://i.ibb.co/BzrNHvg/Files-changed-Github.png)
 
-* セキュリティチェックが行われ、この PR によって新たな脆弱性が発生しないことを確認できます。
-
+* セキュリティチェックが行われ、この PR によって新たな脆弱性が発生しないことを確認できます
 * (任意) PR をマージします
 * PR をマージした場合、Snyk UI へ戻って脆弱性が修正されていることを確認することもできます
 
