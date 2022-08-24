@@ -345,8 +345,6 @@ Open source:       no
 Project path:      /Users/pasapicella/snyk/SE/workshops/SCA-SAST-workshop/juice-shop
 Licenses:          enabled
 
-Tip: Run `snyk wizard` to address these issues.
-
 
 Tested 2 projects, 2 contained vulnerable paths.
 
