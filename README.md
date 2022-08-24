@@ -38,13 +38,13 @@ Snyk Open Source 関連ステップ
 
 注: Juice-Shop アプリケーションをすでにフォーク済みの場合、このステップは省略できます。次のステップへ進んでください。
 
-次の GitHub リポジトリにアクセスしてください - https://github.com/juice-shop/juice-shop
+次の GitHub リポジトリにアクセスしてください - https://github.com/snyk-japan/juice-shop (注: こちらのリポジトリをフォークした場合、Node.js バージョンとして `10.x`, `12.x`, `14.x` のいずれかをご利用ください)
 
 * "**Fork**" ボタンを選択します
 * フォーク先がパブリックな GitHub アカウントであることを確かめます
 * "**Create fork**" ボタンを選択します
 
-![alt tag](https://i.ibb.co/PYCX43Q/Juice-Shop-Github.png)
+<img width="1236" alt="image" src="https://user-images.githubusercontent.com/95601557/182498309-a49b75a9-5aa8-4900-a34e-135a84b68666.png">
 
 ## Step 2 - GitHub インテグレーションの設定
 
@@ -344,8 +344,6 @@ Project name:      frontend
 Open source:       no
 Project path:      /Users/pasapicella/snyk/SE/workshops/SCA-SAST-workshop/juice-shop
 Licenses:          enabled
-
-Tip: Run `snyk wizard` to address these issues.
 
 
 Tested 2 projects, 2 contained vulnerable paths.
