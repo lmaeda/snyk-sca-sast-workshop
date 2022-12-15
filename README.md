@@ -56,7 +56,7 @@ Snyk を GitHub に接続してリポジトリをインポートできるよう�
 * Integrations タブ -> Source Control -> GitHub を選択する
 * クレデンシャルを設定して GitHub アカウントへ接続する
 
-![alt tag](https://i.ibb.co/bPqqybM/snyk-starter-open-source-1.png)
+<img width="1246" alt="Untitled" src="https://user-images.githubusercontent.com/45160975/207766844-dcdfd932-d6b1-46ae-8a0d-62fa01d9072b.png">
 
 # Snyk Code のステップ
 
@@ -65,13 +65,10 @@ Snyk Code はデベロッパーファーストな SAST で開発プロセスに�
 
 ## Step 3 - Snyk UI で Snyk Code の有効化
 
-* ページ上部のナビゲーションバーの "**Settings**" (歯車アイコン) を選択します
+* 画面左の "**Setting**" → "**Snyk Code**" を選択し、`Disabled` (有効化されていない) と表示されている場合は、`Enabled` (有効化されている) に切り替えた後、"**Save Changes**" を選択します
 
-![alt tag](https://i.ibb.co/3fS4VCd/snyk-code-1.png)
+<img width="1881" alt="Untitled 2" src="https://user-images.githubusercontent.com/45160975/207767043-28bb2ded-31c8-42b6-9fd1-0b6f384e0a18.png">
 
-* 画面左の "**Snyk Code**" を選択し、`Disabled` (有効化されていない) と表示されている場合は、`Enabled` (有効化されている) に切り替えた後、"**Save Changes**" を選択します
-
-![alt tag](https://i.ibb.co/bP2FpGx/snyk-code-2.png)
 
 ## Step 4 - プロジェクトの追加 (Snyk Code で脆弱性をスキャン)
 
