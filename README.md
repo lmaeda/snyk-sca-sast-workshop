@@ -39,6 +39,8 @@ Snyk Open Source 関連ステップ
 注: Juice-Shop アプリケーションをすでにフォーク済みの場合、このステップは省略できます。次のステップへ進んでください。
 
 次の GitHub リポジトリにアクセスしてください - https://github.com/snyk-japan/juice-shop (注: こちらのリポジトリをフォークした場合、Node.js バージョンとして `10.x`, `12.x`, `14.x` のいずれかをご利用ください)
+- https://github.com/lmaeda/football
+- https://github.com/lmaeda/c-goof
 
 * "**Fork**" ボタンを選択します
 * フォーク先がパブリックな GitHub アカウントであることを確かめます
